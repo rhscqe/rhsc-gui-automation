@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config version="1.0">
+
+	<TestEnvironment name="jenkins-blr-rhsc-gui-setup"
+		description="Setup for RHSC GUI automation, For Jenkins Overnight jobs">
+		<browser path="/usr/bin/firefox" type="firefox" options="--display=:1.0" reopen-for-each-test="true" />
+		<sahi baseDir="/opt/applications/sahi" userDataDir="/opt/applications/sahi/userdata" />
+    <rhscGuiHttpUrl>https:/<<rhscs-host>>//webadmin/webadmin/WebAdmin.html#login</rhscGuiHttpUrl> <!-- TODO fill in rhsc host here -->
+    <rhscGuiHttpsUrl>https://<<rhsc-host>>/webadmin/webadmin/WebAdmin.html#login</rhscGuiHttpsUrl> <!-- TODO fill in rhsc host here -->
+		<rhsc-admin-credentials username="admin"  password="redhat" domain="internal" />
+    <rhscHost hostname="<<rhsc-host>>" login="root" password="redhat" />  <!-- TODO fill in rhsc host here -->
+
+		<clusterCompatibilityVersion version31="3.1" version32="3.2" version33="3.3" primaryVersion="3.3"/>
+
+    <server name="server23" description="RHS Server" hostname="<<rhs-node-a>>" login="root" password="redhat"> <!-- TODO  fill in rhs-node-a here -->
+			<bricks name="bricks-distribute-1">
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick3</brick>
+			</bricks>
+			<bricks name="bricks-replicate-1">
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distributed-replicate-1">
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick4</brick>
+			</bricks>
+			<bricks name="bricks-stripe-1">
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distributed-stripe-1">
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick4</brick>
+			</bricks>
+			<bricks name="bricks-test-add-bricks-wrong-path">
+				<brick>/rhs/brick1/gluster/bricks/testAddBricks/brick1</brick>
+			</bricks>
+			<bricks name="bricks-test-add-bricks-invalid-directory">
+				<brick>brick</brick>
+			</bricks>
+			<bricks name="bricks-test-duplicate-volume-name">
+				<brick>/rhs/brick1/gluster/bricks/duplicateVolumeName/brick</brick>
+			</bricks>
+			<bricks name="bricks-distribute-2">
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distribute-3">
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory1/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory2/brick2</brick>
+			</bricks>
+			<bricks name="bricks-distribute-4">
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory1/brick3</brick>
+			</bricks>
+			<bricks name="bricks-distribute-5">
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory5/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory5/brick2</brick>
+			</bricks>
+			<bricks name="bricks-distribute-6">
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory6/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory6/brick2</brick>
+			</bricks>
+			<bricks name="bricks-distribute-7">
+				<brick>/rhs/brick1/gluster/bricks/this/DELETE_ME/this/dir/doesnt/exist/yet</brick>
+			</bricks>
+			<bricks name="bricks-test-incorrect-brick-number">
+				<brick>/rhs/brick1/gluster/bricks/stripeNegative/brick1</brick>
+			</bricks>
+		</server>
+
+    <server name="server24" description="RHS Server" hostname="<<rhsc-node-b>>" login="root" password="redhat"> <!-- TODO fill in <<rhs-node-b>> here -->
+			<bricks name="bricks-distribute-1">
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick3</brick>
+			</bricks>
+			<bricks name="bricks-replicate-1">
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/replicate/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distributed-replicate-1">
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate/brick4</brick>
+			</bricks>
+			<bricks name="bricks-stripe-1">
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/stripe/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distributed-stripe-1">
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe/brick4</brick>
+			</bricks>
+			<bricks name="bricks-test-add-bricks-invalid-directory">
+				<brick>@#$%^</brick>
+			</bricks>
+			<bricks name="bricks-distribute-2">
+				<brick>/rhs/brick1/gluster/bricks/distribute/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distribute-3">
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory1/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory2/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distributed-stripe-2">
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe2/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe2/brick2</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe2/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedStripe2/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distributed-replicate-2">
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate2/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributedReplicate2/brick2</brick>
+			</bricks>
+			<bricks name="bricks-distribute-5">
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory5/brick3</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory5/brick4</brick>
+			</bricks>
+			<bricks name="bricks-distribute-6">
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory6/brick1</brick>
+				<brick>/rhs/brick1/gluster/bricks/distributeDirectory6/brick2</brick>
+			</bricks>
+		</server>
+		
+		<client-machine name="gluster-client1" type="Linux" description="Linux Client Machine" hostname="client-1"
+      login="root" password="redhat" mount-points="/store/glusterMount/"/> <!-- TODO fill in client-1  -->
+
+		<client-machine name="gluster-client2" type="Linux" description="Linux Client Machine" hostname="client-2"
+      login="root" password="rhscauto" mount-points="/store/glusterMount/"/> <!-- TODO fill in cllient-2 -->
+
+    <general-key-value-map key="SINGLE_IP" value="client-1-ip" /> <!-- TODO fill in in with client-1 ipaddress -->
+    <general-key-value-map key="COMMA_SEPARATED_IP" value="client-1-ip,client-2-ip" /> <!-- TODO fill in with client-2-ip -->
+    <general-key-value-map key="SINGLE_HOSTNAME" value="client-1-hostname" /> <!-- TODO fill in with client-1-hostname -->
+		<general-key-value-map key="ALLOW_ALL" value="*" />
+    <general-key-value-map key="COMMA_SEPARATED_HOSTNAMES" value="client-1-hostname,client-2-hostname" /> <!-- TODO fill in with client-2-hostname and client-1-hostname -->
+    <general-key-value-map key="COMMA_SEPARATED_IP_HOSTNAME" value="client-1-ip,client-2-hostname" /> <!-- TODO -->
+	</TestEnvironment>
+</config>
+
