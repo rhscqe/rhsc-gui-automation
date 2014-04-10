@@ -9,7 +9,7 @@
 	<property name="test.output.dir" location="test-output" />
 	<property name="report.dir" value="test-output/Jenkins_Test_Suite"/>
 	<property name="te.properties" value="te/te.properties" />
-	<condition property="webui-framework.dir" value="../../../webui-framework">
+	<condition property="webui-framework.dir" value="../webui-framework">
 		<not>
 			<isset property="webui-framework.dir"/>
 		</not>
