@@ -1,0 +1,25 @@
+<suite name="RHSC2.x_GUI_Automation_Tagging_Tests">
+
+	<test name="TaggingTests">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.tags.TagServerTest">
+				<methods>
+					<include name="tagServer"></include>
+				</methods>
+			</class>
+      <class name="com.redhat.qe.storageconsole.sahi.tests.tags.CreateAndDeleteTagTest">
+				<methods>
+					<include name="newTag"></include>
+					<include name="cancelNewTag"></include>
+				</methods>
+			</class>
+      <class name="com.redhat.qe.storageconsole.sahi.tests.tags.EditTagTest">
+				<methods>
+					<include name="editTest"></include>
+					<include name="editCancelTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

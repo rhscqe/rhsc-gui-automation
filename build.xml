@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="RHSC-SAHI" default="compile">
+	<property environment="env"/>
+	<property name="user.data" value="${env.SAHI_USERDATA_DIR}" location="./scripts"/>
+	<property name="sahi.dir" value="${env.SAHI_BASE}" location="."/>
+	<property name="test.build.dir" location="bin" />
+	<property name="test.src.dir" location="src" />
+	<property name="test.resources.dir" location="resources" />
+	<property name="test.output.dir" location="test-output" />
+	<property name="report.dir" value="test-output/Jenkins_Test_Suite"/>
+	<property name="te.properties" value="te/te.properties" />
+	<condition property="webui-framework.dir" value="../../../webui-framework">
+		<not>
+			<isset property="webui-framework.dir"/>
+		</not>
+	</condition>
+
+	<path id="utils.cp">
+		<fileset dir="${webui-framework.dir}/lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${env.SAHI_BASE}/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<path id="tests.cp">
+		<pathelement location="${test.build.dir}" />
+		
+		<fileset dir="lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<pathelement location="${webui-framework.dir}/bin" />
+
+		<path refid="utils.cp" />
+	</path>
+
+	<taskdef name="sahi" classname="net.sf.sahi.ant.RunSahiTask" classpath="${env.SAHI_BASE}/lib/ant-sahi.jar"/>
+	<taskdef name="testng" classpathref="utils.cp" classname="org.testng.TestNGAntTask" />
+
+    <target name="deps">
+		<echo message="Compiling dependencies in ${webui-framework.dir}" />
+		<ant antfile="${webui-framework.dir}/build.xml">
+			<property name="basedir" value="${webui-framework.dir}" />
+		</ant>
+	</target>
+
+	<target name="compile" depends="clean,deps">
+		<echo message="Compiling [${ant.project.name}] in ${basedir}" />
+		<mkdir dir="${test.build.dir}" />
+
+		<javac srcdir="${test.src.dir}" destdir="${test.build.dir}" classpathref="tests.cp" debug="on">
+			<compilerarg value="-Xlint:none"/>
+		</javac>
+		<mkdir dir="${test.build.dir}/resources"/>
+		<copy todir="${test.build.dir}/resources">
+			<fileset dir="${test.resources.dir}"/>
+		</copy>
+		<echo message="Done." />
+	</target>
+
+	<target name="run" description="run RHSC sahi java test" depends="compile">
+		
+		<testng haltonfailure="false" classpathref="tests.cp" reporter="org.testng.reporters.JUnitXMLReporter" outputdir="${test.output.dir}" listeners="org.uncommons.reportng.HTMLReporter">
+			<xmlfileset dir="resources/testng-files" includes="testng-core.xml"/>
+		</testng>
+	</target>
+
+	<target name="run_U5" description="run RHSC sahi java test" depends="compile">
+		<property name="env.TEST_ENVIRONMENT_FILE" value="${test.resources.dir}/te/te-U5.properties"/>
+		
+		<testng haltonfailure="false" classpathref="tests.cp" reporter="org.testng.reporters.JUnitXMLReporter" outputdir="${test.output.dir}" listeners="org.uncommons.reportng.HTMLReporter">
+			<xmlfileset dir="resources/testng-files" includes="testng-core-for-U5.xml"/>
+		</testng>
+	</target>
+
+	<target name="clean">
+		<echo message="Cleaning ${test.build.dir}"/>
+		<delete failonerror="true" quiet="false" includeemptydirs="true">
+			<fileset dir="${test.build.dir}" includes="**/*"/>
+		</delete>
+		<delete dir="${test.output.dir}"/>
+	</target>
+
+	<target name="cleanerTool" depends="compile" >
+		<echo message="Cleaning up rhsc"/>
+		<java classname="com.redhat.qe.storageconsole.helpers.RhscCleanerTool" classpathref="tests.cp" />
+	</target>
+
+	<target name="cleanerToolU5" depends="compile" >
+		<property name="env.TEST_ENVIRONMENT_FILE" value="${test.resources.dir}/te/te-U5.properties"/>
+
+		<echo message="Cleaning up rhsc"/>
+		<java classname="com.redhat.qe.storageconsole.helpers.RhscCleanerTool" classpathref="tests.cp" />
+	</target>
+
+</project>

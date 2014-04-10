@@ -1,0 +1,744 @@
+<suite name="RHSC2.x_GUI_Automation_Test">
+<!-- This is the file that defines the tests to be run against RHS UPDATE_5 nodes. -->
+	<listeners>
+		<listener class-name="com.redhat.qe.storageconsole.listeners.RhscSuiteListener" />
+	</listeners>
+
+	<test name="GuiLoginTest">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.LoginLogoutTest">
+				<methods>
+					<include name="loginTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Get Version">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VersionTest">
+				<methods>
+					<include name="getVersion"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Add Cluster">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
+				<methods>
+					<include name="createCluster"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Add Server">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+				<methods>
+					<include name="addServer"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Check relevance of hosts appearing in servers drop-down for add-bricks">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
+				<methods>
+					<include name="checkRelevantHosts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Add Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="createVolume"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Search">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.SearchTest">
+				<methods>
+					<include name="searchByClusterName"></include>
+					<include name="searchByClusterDescription"></include>
+					<include name="searchByHostName"></include>
+					<include name="searchByHostStatus"></include>
+					<include name="searchByVolumeName"></include>
+					<include name="searchByVolumeType"></include>
+					<include name="searchByUserName"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Negative test cases for volume creation and adding bricks">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="createVolumeNegative"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Negative test case for volume creation on an empty cluster">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="addVolumeToEmptyClusterNegative"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+<!-- commenting out because of BZ836007
+	<test name="Negative test case for adding bricks on a host that is down">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="addBricksNegativeHostDown"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+-->
+
+	<test name="Create a distributed-stripe volume with stripe and brick count the same">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="createDistributedStripeVolumeWithSameBrickAndStripeCount"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Start Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="startVolume"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Cluster Services Tab">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
+				<methods>
+					<include name="clusterServicesTab"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Remove Volume that is not in Stopped State">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="removeVolumeNotStopped"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Add brick to existing volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="addBricksExistingVolume"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Validate volume General tab data">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="validateVolumeGeneralTab"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+<!-- cifs and nfs tests will fail due to missing gluster hooks and tcp port 111 not being opened in iptables -->
+<!--
+	<test name="Validate Volume CIFS support on volume options edit">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.CifsMountVolumeOnCreationTest" >
+				<methods>
+					<include name="validateCliVolumeOption"></include>
+					<include name="validateSambaMountAndSmbConf"></include>
+					<include name="validateMountingSmbShare"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Validate Volume CIFS support on volume options edit">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.CifsMountVolumeOnEditOptionTest" >
+				<methods>
+					<include name="validateCliVolumeOption"></include>
+					<include name="validateSambaMountAndSmbConf"></include>
+					<include name="validateMountingSmbShare"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Validate Volume NFS support on volume creation">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.NfsMountVolumeOnCreationTest">
+				<methods>
+					<include name="validateMountingNfsShare"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Validate Volume NFS support on volume creation">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.NfsMountVolumeOnEditOptionTest">
+				<methods>
+					<include name="test"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+-->
+
+	<test name="Validate volume brick tab data">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="validateVolumeBrickSummaryTab"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Testing auth.allow option">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="testAuthAllow"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Add Volume Option">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="addVolumeOption"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Edit Volume Option">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="editVolumeOption"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Check whether all permissible values of auth.allow are accepted">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="checkAuthAllowValues"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Reset single Volume Options">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="resetVolumeOption"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Reset All Volume Options">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="resetAllVolumeOptions"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+<!-- Commented because not supported in Anshi
+    <test name="Optimize For Virt Store">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+                <methods>
+                    <include name="optimizeForVirtStore"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+-->
+	<test name="Create nested Brick Directories when adding bricks (like mkdir -p)">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.AddBrickNonExistingNestedDirectoriesTest">
+				<methods>
+					<include name="addBricksExistingVolumeWithNonExistantBrickDirectory"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+    <test name="Remove Bricks">
+        <classes>
+             <class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+                 <methods>
+                     <include name="removeBricks"></include>
+                 </methods>
+            </class>
+         </classes>
+     </test>
+
+	<test name="Stop Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="stopVolume"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="auth.reject options for Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="rejectOptionTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Negative test cases for auth.reject options for Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="negativeVolumeRejectOptionTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+    <test name="Add Server - Already Exists - Negative">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+                <methods>
+                    <include name="addServerAlreadyExistsNegative"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+	<test name="Remove Server - Negative">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+				<methods>
+					<include name="removeServerNegative"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+    <test name="Import Cluster With Servers Already In Another Cluster - Negative">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ImportTest">
+                <methods>
+                    <include name="importWithServersAlreadyInAnotherCluster"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+	<test name="Edit Server When In Maintenance That Has Volumes - Negative">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+                <methods>
+                    <include name="editServerInMaintenanceThatHasVolumes"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+	<test name="Remove Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="removeVolume"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Create a distributed-replicated volume with all bricks on a single sever">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="createDistributedReplicatedVolumeWithAllBricksSingleServer"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Create a replicated volume with all bricks on a single sever">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="createReplicateVolumeWithAllBricksSingleServer"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Create volume with different access protocols">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="createVolumeWithAccessProtocols"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+<!--
+	<test name="Create volume with bricks already existing on hosts">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
+				<methods>
+					<include name="createVolumeExistingBricks"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+-->
+	<test name="Remove Server Not In Maintenance - Negative">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+				<methods>
+					<include name="removeServerNotInMaintenaceNegative"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Rename Cluster">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
+				<methods>
+					<include name="renameCluster"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Create Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeCreate"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Start Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeStart"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Volume Option Add">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeOptionAdd"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Volume Option Edit">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeOptionEdit"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Volume Option Reset">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeOptionReset"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Volume Option Reset-All">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeOptionResetAll"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Stop Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeStop"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Gluster Sync Delete Volume">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncTest">
+				<methods>
+					<include name="syncVolumeDelete"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+    <test name="Rename Server When In Up State">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+                <methods>
+                    <include name="renameServerInUpState"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+	<test name="Edit Server When In Maintenance">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+                <methods>
+                    <include name="editServerInMaintenance"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+	<test name="Remove Server">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+				<methods>
+					<include name="removeServer"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Add Server With Invalid Password - Negative">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
+				<methods>
+					<include name="addServerWithInvalidPassword"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Create Cluster - Name Already In Use - Negative">
+        <classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
+				<methods>
+					<include name="createClusterNameAlreadyInUseNegative"></include>
+		        </methods>
+	        </class>
+        </classes>
+    </test>
+
+	<test name="Sync Add / Remove Server">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.GlusterSyncServerTest">
+				<methods>
+					<include name="syncServerAdd"></include>
+					<include name="syncServerRemove"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Remove Cluster">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
+				<methods>
+					<include name="deleteCluster"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Event - Basic View">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.EventsTest">
+				<methods>
+					<include name="eventsBasicView"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Event - Advanced View">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.EventsTest">
+				<methods>
+					<include name="eventsAdvancedView"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Event - Generate And Then Validate Event">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.EventsTest">
+				<methods>
+					<include name="generateAndThenValidateEvent"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Event - Validate Page Buttons">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.EventsTest">
+                <methods>
+                    <include name="validatePagingButtons"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Import 1-node Cluster">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ImportTest">
+                <methods>
+                    <include name="importClusterWithNoPeers"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Import 2-node Cluster">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ImportTest">
+                <methods>
+                    <include name="importTwoNodeCluster"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Import 2-node Cluster With Volumes">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ImportTest">
+                <methods>
+                    <include name="importTwoNodeClusterWithVolumes"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Import Cluster With Invalid Root Password">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ImportTest">
+                <methods>
+                    <include name="importClusterWithInvalidRootPassword"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Import Cluster With Invalid Server Address">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ImportTest">
+                <methods>
+                    <include name="importClusterWithInvalidServerAddress"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Import Cluster With Invalid Add Servers Password">
+        <classes>
+            <class name="com.redhat.qe.storageconsole.sahi.tests.ImportTest">
+                <methods>
+                    <include name="importClusterWithInvalidAddServersPassword"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="GuiLogoutTest">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.LoginLogoutTest">
+				<methods>
+					<include name="logoutTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Negative test case for login with invalid Username">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.LoginLogoutTest">
+				<methods>
+					<include name="loginWithInvalidUsername"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Restart rhsc sever or jboss service is successful">
+		<classes>
+			<class name="com.redhat.qe.storageconsole.sahi.tests.RestartTest">
+				<methods>
+					<include name="testRestart"></include>
+					<include name="testJboss"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

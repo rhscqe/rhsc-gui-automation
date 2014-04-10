@@ -1,0 +1,42 @@
+/**
+ * 
+ */
+package com.redhat.qe.storageconsole.helpers.elements;
+
+import net.sf.sahi.client.Browser;
+import net.sf.sahi.client.ElementStub;
+
+import com.redhat.qe.storageconsole.helpers.JQuerifyWithQuotes;
+import com.redhat.qe.storageconsole.helpers.JsCallChain;
+
+/**
+ * @author dustin 
+ * Feb 19, 2013
+ */
+public class jQueryElement {
+
+	protected String selector = null;
+	protected JsCallChain locator;
+	protected Browser browser;
+
+	/**
+	 * 
+	 */
+	public jQueryElement(JsCallChain jsObject, Browser browser) {
+		this.locator = jsObject;
+		this.browser = browser;
+	}
+
+	public JsCallChain getJsObject() {
+		return locator;
+	}
+
+	public Browser getBrowser() {
+		return browser;
+	}
+
+	public ElementStub getElementStub() {
+		return getBrowser().accessor(getJsObject().toString());
+	}
+
+}
