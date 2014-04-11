@@ -153,8 +153,12 @@ public class SahiTestBase{
 		 return new StorageBrowser(getTestEnvironment().getBrowser().getPath(), 
 				getTestEnvironment().getBrowser().getType(), 
 				getTestEnvironment().getBrowser().getOptions(), 
-				getTestEnvironment().getSahi().getBaseDir(), 
+				getTestEnvironment().getBrowser().getRemoteHost(), 
+				getTestEnvironment().getBrowser().getRemotePort(), 
+				getTestEnvironment().getSahi().getBaseDir(),
 				getTestEnvironment().getSahi().getUserDataDir());
+
+
 	}
 
   public void addJQuery(Browser browser) {

@@ -21,8 +21,8 @@ public class ExtendedBrowser extends Browser{
 		initSahi(basePath, userDataDirectory);
 	}
 
-	public ExtendedBrowser(String browserPath, String browserType, String browserOption, String basePath, String userDataDirectory){
-		super(browserPath, browserType, browserOption);
+	public ExtendedBrowser(String browserPath, String browserProcessName, String browserOption, String host, int port, String basePath, String userDataDirectory){
+		super(browserPath, browserProcessName, browserOption, host, port );
 		initSahi(basePath, userDataDirectory);
 	}
 

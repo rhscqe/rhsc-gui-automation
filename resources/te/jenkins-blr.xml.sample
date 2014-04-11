@@ -3,9 +3,21 @@
 
 	<TestEnvironment name="jenkins-blr-rhsc-gui-setup"
 		description="Setup for RHSC GUI automation, For Jenkins Overnight jobs">
-		<browser path="/usr/bin/firefox" type="firefox" options="--display=:1.0" reopen-for-each-test="true" />
+    <browser remote-host="localhost" 
+                remote-port="9999" 
+                path="/usr/bin/firefox" 
+                type="firefox" 
+                options="--display=:0.0" reopen-for-each-test="true" />
+    <!-- example for remote IE host 
+      <browser remote-host="<<remote-host>>" 
+                  remote-port="9999" 
+                  path="C:\Program Files\Internet Explorer\iexplore.exe" 
+                  type="ie" 
+                  options="" reopen-for-each-test="true" />
+    -->
+
 		<sahi baseDir="/opt/applications/sahi" userDataDir="/opt/applications/sahi/userdata" />
-    <rhscGuiHttpUrl>https:/<<rhscs-host>>//webadmin/webadmin/WebAdmin.html#login</rhscGuiHttpUrl> <!-- TODO fill in rhsc host here -->
+    <rhscGuiHttpUrl>https://<<rhscs-host>>/webadmin/webadmin/WebAdmin.html#login</rhscGuiHttpUrl> <!-- TODO fill in rhsc host here -->
     <rhscGuiHttpsUrl>https://<<rhsc-host>>/webadmin/webadmin/WebAdmin.html#login</rhscGuiHttpsUrl> <!-- TODO fill in rhsc host here -->
 		<rhsc-admin-credentials username="admin"  password="redhat" domain="internal" />
     <rhscHost hostname="<<rhsc-host>>" login="root" password="redhat" />  <!-- TODO fill in rhsc host here -->

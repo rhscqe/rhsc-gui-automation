@@ -15,6 +15,8 @@ public class Browser {
 	private String type= null;	
 	private String options= null;
 	private boolean isRepopenForEachTest;
+	private String remoteHost;
+	private int remotePort;
 
 	/**
 	 * @return the path
@@ -75,4 +77,23 @@ public class Browser {
 	public void setReopenForEachTest(boolean isRepopenForEachTest) {
 		this.isRepopenForEachTest = isRepopenForEachTest;
 	}
+
+	@XmlAttribute(name="remote-host")
+	public void setRemoteHost(String host) {
+		this.remoteHost = host;
+	}
+
+	@XmlAttribute(name="remote-port")
+	public void setRemotePort(int port) {
+		this.remotePort = port;
+	}
+
+	public String getRemoteHost() {
+		return this.remoteHost;
+	}
+
+	public int getRemotePort() {
+		return this.remotePort;
+	}
+
 }

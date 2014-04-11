@@ -27,9 +27,8 @@ public class StorageBrowser extends ExtendedBrowser {
 
 	protected Logger _logger = Logger.getLogger(GuiTables.class.getName());
 
-	public StorageBrowser(String browserPath, String browserType,
-			String browserOpt, String sahiDir, String userDataDir) {
-		super(browserPath, browserType, browserOpt, sahiDir, userDataDir);
+	public StorageBrowser(String browserPath, String browserProcessName, String browserOption, String host, int port, String basePath, String userDataDirectory){
+		super(browserPath, browserProcessName, browserOption, host, port,  basePath,  userDataDirectory );
 	}
 
 	private boolean isOpen = false;
