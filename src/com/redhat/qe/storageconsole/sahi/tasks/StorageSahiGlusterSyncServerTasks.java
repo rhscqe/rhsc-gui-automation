@@ -9,8 +9,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.logging.Level;
 
+import org.testng.Assert;
+
 import com.google.common.base.Predicate;
-import com.redhat.qe.auto.testng.Assert;
 import com.redhat.qe.storageconsole.helpers.WaitUtil;
 import com.redhat.qe.storageconsole.mappper.ServerMap;
 
