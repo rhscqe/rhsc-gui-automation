@@ -13,7 +13,8 @@ import java.util.logging.Level;
 
 import javax.xml.bind.JAXBException;
 
-import com.redhat.qe.auto.testng.Assert;
+import org.testng.Assert;
+
 import com.redhat.qe.storageconsole.helpers.AssertUtil;
 import com.redhat.qe.storageconsole.helpers.RhscCleanerTool;
 import com.redhat.qe.storageconsole.helpers.WaitUtil;

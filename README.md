@@ -11,14 +11,10 @@ Prerequisite
 Quick Start
 ===========
 
-source code
------------
-clone this repository and git://github.com/weissjeffm/webui-framework.git into the same directory
 
 environment and configration
 ---------------------------
 The test suite makes use of 1 RHSC instance, 2 RHS nodes, and 2 RHS client machines.
-
 
 `cp resources/te/jenkins-blr.xml.sample resources/te/jenkins-blr.xml`
 and update the xml with the hostnames or ip addresses of your RHSC, RHS nodes, RHS Client machines
@@ -61,7 +57,6 @@ Development Environment
 * Eclipse for Java Developers
 * TestNG eclipse plugin
 
-import both this project and webui-framework into the same workspace
 
 
 

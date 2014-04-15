@@ -9,16 +9,8 @@
 	<property name="test.output.dir" location="test-output" />
 	<property name="report.dir" value="test-output/Jenkins_Test_Suite"/>
 	<property name="te.properties" value="te/te.properties" />
-	<condition property="webui-framework.dir" value="../webui-framework">
-		<not>
-			<isset property="webui-framework.dir"/>
-		</not>
-	</condition>
 
 	<path id="utils.cp">
-		<fileset dir="${webui-framework.dir}/lib">
-			<include name="*.jar" />
-		</fileset>
 		<fileset dir="${env.SAHI_BASE}/lib">
 			<include name="*.jar" />
 		</fileset>
@@ -31,22 +23,13 @@
 			<include name="*.jar" />
 		</fileset>
 
-		<pathelement location="${webui-framework.dir}/bin" />
-
 		<path refid="utils.cp" />
 	</path>
 
-	<taskdef name="sahi" classname="net.sf.sahi.ant.RunSahiTask" classpath="${env.SAHI_BASE}/lib/ant-sahi.jar"/>
-	<taskdef name="testng" classpathref="utils.cp" classname="org.testng.TestNGAntTask" />
+	<!--<taskdef name="sahi" classname="net.sf.sahi.ant.RunSahiTask" classpath="${env.SAHI_BASE}/lib/ant-sahi.jar"/>-->
+	<taskdef name="testng" classpathref="tests.cp" classname="org.testng.TestNGAntTask" />
 
-    <target name="deps">
-		<echo message="Compiling dependencies in ${webui-framework.dir}" />
-		<ant antfile="${webui-framework.dir}/build.xml">
-			<property name="basedir" value="${webui-framework.dir}" />
-		</ant>
-	</target>
-
-	<target name="compile" depends="clean,deps">
+	<target name="compile" depends="clean">
 		<echo message="Compiling [${ant.project.name}] in ${basedir}" />
 		<mkdir dir="${test.build.dir}" />
 
