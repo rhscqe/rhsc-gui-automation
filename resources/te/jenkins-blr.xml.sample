@@ -22,7 +22,7 @@
 		<rhsc-admin-credentials username="admin"  password="redhat" domain="internal" />
     <rhscHost hostname="<<rhsc-host>>" login="root" password="redhat" />  <!-- TODO fill in rhsc host here -->
 
-		<clusterCompatibilityVersion version31="3.1" version32="3.2" version33="3.3" primaryVersion="3.3"/>
+	<clusterCompatibilityVersion major="3" minor="3" />
 
     <server name="server23" description="RHS Server" hostname="<<rhs-node-a>>" login="root" password="redhat"> <!-- TODO  fill in rhs-node-a here -->
 			<bricks name="bricks-distribute-1">
