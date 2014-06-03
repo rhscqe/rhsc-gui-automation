@@ -201,12 +201,16 @@ public class StorageSahiVolumeTasks {
 		// Verify that the cluster displayed for this new volume is correct:
 	private void validateVolumeTableEntry(VolumeMap volumeMap) {
 		List<HashMap<String, String>> volumesTable = new VolumeTable(storageSahiTasks).getData();
-
+		int count = 0;
 		for (HashMap<String, String> volumeRow : volumesTable) {
 			if (volumeMap.getVolumeName().equals(volumeRow.get(GuiTables.NAME))) {
 		    	Assert.assertTrue(volumeMap.getClusterName().equals(volumeRow.get(GuiTables.CLUSTER)), "Volume ["+volumeMap.getVolumeName()+"] has invalid Cluster!");
 		    	Assert.assertTrue(volumeMap.getVolumeType().equals(volumeRow.get(GuiTables.VOLUME_TYPE)), "Volume Type ["+volumeMap.getVolumeType()+"] is invalid!");
-		    	Assert.assertTrue(volumeMap.getBricks().size() == (Integer.parseInt(volumeRow.get(GuiTables.NUMBER_OF_BRICKS))), "Brick Count ["+volumeMap.getBricks().size()+"] is invalid!");
+		    	String[] bricks = volumeRow.get(GuiTables.NUMBER_OF_BRICKS).replaceAll("\\s+", " ").trim().split(" ");
+		    	for(String tmpBrick : bricks){
+		    		count+=Integer.valueOf(tmpBrick);
+		    	}
+		    	Assert.assertTrue(volumeMap.getBricks().size() == (count), "Brick Count ["+volumeMap.getBricks().size()+"] is invalid!");
 		    	break;
 		    }
 		}

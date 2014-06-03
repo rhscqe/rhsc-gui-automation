@@ -3,10 +3,14 @@
  */
 package com.redhat.qe.storageconsole.sahi.tasks;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.redhat.qe.storageconsole.helpers.elements.VolumeTable;
 
 import net.sf.sahi.client.ElementStub;
 
@@ -47,7 +51,7 @@ public class GuiTables {
 	 * Volumes Table Headers
 	 */
 	public static final String VOLUME_TYPE 	= "Volume Type";
-	public static final String NUMBER_OF_BRICKS = "Number of Bricks";
+	public static final String NUMBER_OF_BRICKS = "Bricks";
 	public static final String ACTIVITIES = "Activities";
 	public static final String VOLUME_TABLE_REFERENCE 	= "MainTabVolumeView_table_content_col";
 
@@ -196,14 +200,21 @@ public class GuiTables {
 	}
 	
 	public static LinkedList<HashMap<String, String>> getVolumesTable(StorageBrowser storageTasks){
-		LinkedList<String> keys = new LinkedList<String>();
+		ArrayList<HashMap<String, String>> volumesTable = new VolumeTable(storageTasks).getData();
+		LinkedList<HashMap<String, String>> tmpVolumesTable = new LinkedList<HashMap<String, String>>();
+		for(HashMap<String, String> row : volumesTable) {
+			tmpVolumesTable.addLast(row);
+		}
+		return tmpVolumesTable;
+		// This block is being commented because of the two columns introduced in the Bricks to show no.of bricks up and no.of bricks down.since the below code does not work commenting it.
+		/*LinkedList<String> keys = new LinkedList<String>();
 		keys.add(GuiTables.NAME);
 		keys.add(GuiTables.CLUSTER);
 		keys.add(GuiTables.VOLUME_TYPE);
 		keys.add(GuiTables.NUMBER_OF_BRICKS);
 		keys.add(GuiTables.ACTIVITIES);
-		// keys.add(GuiTables.STATUS);
-		return getTable(storageTasks, GuiTables.VOLUME_TABLE_REFERENCE, keys);
+		keys.add(GuiTables.STATUS);
+		return getTable(storageTasks, GuiTables.VOLUME_TABLE_REFERENCE, keys);*/
 	}
 
     public static HashMap<String, String> getVolumeOption(StorageBrowser storageTasks, String optionName, ElementStub nearReference){
