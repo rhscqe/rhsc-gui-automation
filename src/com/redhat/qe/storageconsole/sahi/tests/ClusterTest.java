@@ -26,7 +26,7 @@ import com.redhat.qe.storageconsole.te.TestEnvironmentConfigException;
  * Aug 9, 2012
  */
 public class ClusterTest extends SahiTestBase{
-	private final String EVENT_MSG_CLUSTER_ADDED = "Host cluster .*. was added";
+	private final String EVENT_MSG_CLUSTER_ADDED = "Cluster .*. was added";
 	private final String EVENT_MSG_CLUSTER_REMOVED = "Host cluster .*. was removed";
 	private final String EVENT_MSG_CLUSTER_RENAMED = "Host cluster .*. was updated by";
 	

@@ -47,7 +47,7 @@ public class GuiTables {
 	 * Volumes Table Headers
 	 */
 	public static final String VOLUME_TYPE 	= "Volume Type";
-	public static final String NUMBER_OF_BRICKS = "Number of Bricks";
+	public static final String NUMBER_OF_BRICKS = "Bricks";
 	public static final String ACTIVITIES = "Activities";
 	public static final String VOLUME_TABLE_REFERENCE 	= "MainTabVolumeView_table_content_col";
 
