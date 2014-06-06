@@ -201,15 +201,11 @@ public class StorageSahiVolumeTasks {
 		// Verify that the cluster displayed for this new volume is correct:
 	private void validateVolumeTableEntry(VolumeMap volumeMap) {
 		List<HashMap<String, String>> volumesTable = new VolumeTable(storageSahiTasks).getData();
-		int count = 0;
 		for (HashMap<String, String> volumeRow : volumesTable) {
 			if (volumeMap.getVolumeName().equals(volumeRow.get(GuiTables.NAME))) {
 		    	Assert.assertTrue(volumeMap.getClusterName().equals(volumeRow.get(GuiTables.CLUSTER)), "Volume ["+volumeMap.getVolumeName()+"] has invalid Cluster!");
 		    	Assert.assertTrue(volumeMap.getVolumeType().equals(volumeRow.get(GuiTables.VOLUME_TYPE)), "Volume Type ["+volumeMap.getVolumeType()+"] is invalid!");
-		    	String[] bricks = volumeRow.get(GuiTables.NUMBER_OF_BRICKS).replaceAll("\\s+", " ").trim().split(" ");
-		    	for(String tmpBrick : bricks){
-		    		count+=Integer.valueOf(tmpBrick);
-		    	}
+		    	int count = getNumberFromStringBrick(volumeRow.get(GuiTables.NUMBER_OF_BRICKS));
 		    	Assert.assertTrue(volumeMap.getBricks().size() == (count), "Brick Count ["+volumeMap.getBricks().size()+"] is invalid!");
 		    	break;
 		    }
@@ -1320,12 +1316,21 @@ public class StorageSahiVolumeTasks {
 		Assert.assertTrue(rowNumber >= 0,"Volume [" + volumeMap.getVolumeName() + "] failed to find row.");
 		
 		String expectedBricks = GuiTables.getVolumesTable(storageSahiTasks).get(rowNumber).get(GuiTables.NUMBER_OF_BRICKS);
-		int expectedNumberOfBricks = Integer.parseInt(expectedBricks);
+		int expectedNumberOfBricks = getNumberFromStringBrick(expectedBricks);
 		int actualNumberOfBricks = Integer.parseInt(storageSahiTasks.textbox(0).near(storageSahiTasks.div("Number of Bricks:")).getValue());
 		
 		Assert.assertEquals(actualNumberOfBricks, expectedNumberOfBricks,"Volume [" + volumeMap.getVolumeName() + "] incorrect number of bricks!");
 		
 		return true;
+	}
+	
+	public int getNumberFromStringBrick(String expectedBricks) {
+		int count = 0;
+		String[] bricks = expectedBricks.replaceAll("\\s+", " ").trim().split(" ");
+    	for(String tmpBrick : bricks){
+    		count+=Integer.valueOf(tmpBrick);
+    	}
+    	return count;
 	}
 	
 	public boolean validateOptimizeForVirtStore(VolumeMap volumeMap) {
