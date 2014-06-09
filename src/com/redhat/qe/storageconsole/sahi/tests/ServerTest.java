@@ -32,7 +32,7 @@ public class ServerTest extends SahiTestBase{
 	private final String EVENT_MSG_SERVER_REMOVED = "Host .*. was removed by";
 	private final String EVENT_MSG_SERVER_RENAMED = "Host server23 was renamed from .*. to ";
 	private final String EVENT_MSG_SERVER_MOVED_TO_MAINTENANCE = "Host .*. was switched to Maintenance mode by";
-	private final String EVENT_MSG_SERVER_EDITED_PARAMETERS_UPDATED_BY = "Host .*. configuration was updated by admin@internal";
+	private final String EVENT_MSG_SERVER_EDITED_PARAMETERS_UPDATED_BY = "Host .*. configuration was updated by";
 	private final String EVENT_MSG_SERVER_EDITED_RENAMED = "Host .*. was renamed from .*. to ";
 	
 	StorageSahiServerTasks tasks = null;

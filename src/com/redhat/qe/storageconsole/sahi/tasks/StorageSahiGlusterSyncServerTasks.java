@@ -20,7 +20,7 @@ import com.redhat.qe.storageconsole.mappper.ServerMap;
  * April 8, 2013
  */
 public class StorageSahiGlusterSyncServerTasks {
-	private final String SERVER_ADD_DETECTED = "Host .* was added by admin@internal.";
+	private final String SERVER_ADD_DETECTED = "Host .*. was added by";
 	private final String SERVER_REMOVE_DETECTED = "Detected server .*. removed from Cluster .*.";
 	
 	StorageCLITasks storageCLITasks = new StorageCLITasks();
