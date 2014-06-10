@@ -16,7 +16,7 @@ public class ClusterMap extends BaseMap{
 	private static final String DEFAULT_RESOURCE_LOCATION = "System->Clusters";
 	private String clusterName = null;
 	private String clusterDescription = null;
-	private String clusterCompatibilityVersion = "3.2";
+	private String clusterCompatibilityVersion = "3.4";
 	
 	public static ClusterMap clusterMap(String clusterName){
 		ClusterMap cluster = new ClusterMap();
