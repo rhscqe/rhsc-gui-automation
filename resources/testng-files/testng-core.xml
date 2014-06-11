@@ -574,7 +574,7 @@
         </classes>
     </test>
     
-	<test name="Edit Server When In Maintenance">
+	<!--commenting this because of Bug 1106459<test name="Edit Server When In Maintenance">
         <classes>
             <class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
                 <methods>
@@ -582,7 +582,7 @@
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
 
 	<test name="Remove Server">
 		<classes>
