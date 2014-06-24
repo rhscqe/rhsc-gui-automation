@@ -70,8 +70,15 @@ public class StorageSahiGlusterSyncTasks {
 		checkBrickDetails(volumeMap);		
 		
 		storageSahiTasks.div("Volume Options").click();
-		Assert.assertTrue(GuiTables.getVolumesOptionsTable(storageSahiTasks, storageSahiVolumeTasks.NEAR_REF_VOLUME_OPTIONS_TABLE).isEmpty()
-				, "Volume Options table for volume["+ volumeMap.getVolumeName() +"] should be empty!");
+//		Assert.assertTrue(GuiTables.getVolumesOptionsTable(storageSahiTasks, storageSahiVolumeTasks.NEAR_REF_VOLUME_OPTIONS_TABLE).isEmpty()
+//                               , "Volume Options table for volume["+ volumeMap.getVolumeName() +"] should be empty!");
+		// Before 3.0 volume-options table was expected to be empty, but since 3.0, 4 options are set by default.
+		int volumeOptionsTableSize = GuiTables.getVolumesOptionsTable(storageSahiTasks, storageSahiVolumeTasks.NEAR_REF_VOLUME_OPTIONS_TABLE).size();
+        if(volumeOptionsTableSize > 4){
+            storageSahiTasks._logger.log(Level.SEVERE,
+                    "Volume Options table for volume["+ volumeMap.getVolumeName() +"] should have only user-set options!");
+            return false;
+        }
 		Assert.assertTrue(storageSahiTasks.div("/Detected new volume "+volumeMap.getVolumeName()+"/").exists()
 				, "Events message did not appear!");
 		return true;
