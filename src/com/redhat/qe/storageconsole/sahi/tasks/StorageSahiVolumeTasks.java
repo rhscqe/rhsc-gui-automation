@@ -993,7 +993,8 @@ public class StorageSahiVolumeTasks {
 		
 		for (int x = 0; x < retryCount; x++) {
 			//if(storageSahiTasks.div(cellReference).countSimilar() == 0) {
-			if (GuiTables.getVolumesOptionsTable(storageSahiTasks, NEAR_REF_VOLUME_OPTIONS_TABLE).size() == 0) {
+			//if (GuiTables.getVolumesOptionsTable(storageSahiTasks, NEAR_REF_VOLUME_OPTIONS_TABLE).size() == 0) { commenting this line for RHS 3.0 because with the introduction of snapshot feature, whenever a volume is created four of snapshot options are present by default.
+			if (GuiTables.getVolumesOptionsTable(storageSahiTasks, NEAR_REF_VOLUME_OPTIONS_TABLE).size() == 4) {
 				break;
 			} else {
 				storageSahiTasks.wait(wait, retryCount, x);
@@ -1001,12 +1002,14 @@ public class StorageSahiVolumeTasks {
 		}
 		
 		//if (storageSahiTasks.div(cellReference).countSimilar() != 0) {
-		if (GuiTables.getVolumesOptionsTable(storageSahiTasks, NEAR_REF_VOLUME_OPTIONS_TABLE).size() != 0) {
+		//if (GuiTables.getVolumesOptionsTable(storageSahiTasks, NEAR_REF_VOLUME_OPTIONS_TABLE).size() != 0) { commenting this line for RHS 3.0 because with the introduction of snapshot feature, whenever a volume is created four of snapshot options are present by default.
+		if (GuiTables.getVolumesOptionsTable(storageSahiTasks, NEAR_REF_VOLUME_OPTIONS_TABLE).size() > 4) { 
 			storageSahiTasks._logger.log(Level.WARNING, "Volume [" + volumeMap.getVolumeName() + "] Reset All Options failed to remove.");
 			return false;
 		}
 		
-		storageSahiTasks._logger.log(Level.INFO, "Volume [" + volumeMap.getVolumeName() + "] all Volume Options removed.");
+		//storageSahiTasks._logger.log(Level.INFO, "Volume [" + volumeMap.getVolumeName() + "] all Volume Options removed."); commenting this line for RHS 3.0 because with the introduction of snapshot feature, whenever a volume is created four of snapshot options are present by default.
+		storageSahiTasks._logger.log(Level.INFO, "Volume [" + volumeMap.getVolumeName() + "] all User-Set Volume Options removed.");
 		return true;
 	}
 	
