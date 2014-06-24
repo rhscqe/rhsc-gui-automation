@@ -1,4 +1,4 @@
-<suite name="RHSC2.x_GUI_Automation_Test">
+<suite name="RHSC3.x_GUI_Automation_Test">
 
 	<listeners>
 		<listener class-name="com.redhat.qe.storageconsole.listeners.RhscSuiteListener" />
