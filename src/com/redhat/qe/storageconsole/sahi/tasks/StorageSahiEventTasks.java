@@ -83,7 +83,7 @@ public class StorageSahiEventTasks {
 	// Generate and Event, and the validate that the event is listed in the Event table.
 	public boolean generateAndThenValidateEvent() throws IOException, JAXBException, TestEnvironmentConfigException {
 		final String clusterName = "automation_generateEvent_" + System.currentTimeMillis(); // Add some uniqueness to the Cluster Name
-		final String expectedMessage = "Host cluster " + clusterName + " was added by";
+		final String expectedMessage = "Cluster " + clusterName + " was added by";
 		
 		// Generate Event - Create A New Cluster
 		
