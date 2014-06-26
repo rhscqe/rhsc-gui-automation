@@ -494,8 +494,8 @@
 		<classes>
 			<class name="com.redhat.qe.storageconsole.sahi.tests.HooksTest">
 				<methods>
-					<!--<include name="enableHookSingleServer"></include>-->
-					<include name="disableHookSingleServer"></include>
+					<!--<include name="enableHookSingleServer"></include>
+					<include name="disableHookSingleServer"></include>-->
 					<include name="hooksList"></include>
 					<include name="resolveHookCopyToAllServers"></include>
 					<include name="resolveConflicts"></include>
