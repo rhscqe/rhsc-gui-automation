@@ -1241,6 +1241,10 @@ public class StorageSahiVolumeTasks {
 		}, NUM_ATTEMPTS);		
 		removeButton.getElementStub().click();
 		
+		for (int x = 0 ; x <retryCount; x++) {
+			storageSahiTasks.wait(wait, retryCount, x);
+		}
+		
 		assertTrue(storageSahiTasks.div(BRICK_REMOVAL_CONFIRMATION).isVisible(), "Remove Bricks confirmation is not visible!");
 		new RemoveBricksDialog(storageSahiTasks).getCheckbox().getElementStub().uncheck();
 		storageSahiTasks.closePopup("OK");
