@@ -14,7 +14,7 @@
 		</classes>
 	</test>
 
-	<!--<test name="Get Version">
+	<test name="Get Version">
 		<classes>
 			<class name="com.redhat.qe.storageconsole.sahi.tests.VersionTest">
 				<methods>
@@ -44,7 +44,7 @@
 		</classes>
 	</test>
 
-	<test name="Check relevance of hosts appearing in servers drop-down for add-bricks">
+	<!--<test name="Check relevance of hosts appearing in servers drop-down for add-bricks">
 		<classes>
 			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
 				<methods>
