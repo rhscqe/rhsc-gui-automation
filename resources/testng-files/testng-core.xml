@@ -64,7 +64,7 @@
 		</classes>
 	</test>
 
-	<!--<test name="Search">
+	<test name="Search">
 		<classes>
 			<class name="com.redhat.qe.storageconsole.sahi.tests.SearchTest">
 				<methods>
@@ -179,7 +179,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
 
 <!-- cifs and ntfs tests will fail due to missing gluster hooks and tcp port 111 not being opened in iptables -->
 <!--
@@ -228,7 +228,7 @@
 	</test>
 -->
 
-	<!--<test name="Validate volume brick tab data">
+	<test name="Validate volume brick tab data">
 		<classes>
 			<class name="com.redhat.qe.storageconsole.sahi.tests.VolumeTest">
 				<methods>
@@ -316,7 +316,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
      
     <test name="Remove Bricks">
         <classes>
