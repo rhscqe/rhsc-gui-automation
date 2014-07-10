@@ -44,7 +44,7 @@
 		</classes>
 	</test>
 
-	<!--<test name="Check relevance of hosts appearing in servers drop-down for add-bricks">
+	<test name="Check relevance of hosts appearing in servers drop-down for add-bricks">
 		<classes>
 			<class name="com.redhat.qe.storageconsole.sahi.tests.ClusterTest">
 				<methods>
@@ -64,7 +64,7 @@
 		</classes>
 	</test>
 
-	<test name="Search">
+	<!--<test name="Search">
 		<classes>
 			<class name="com.redhat.qe.storageconsole.sahi.tests.SearchTest">
 				<methods>
