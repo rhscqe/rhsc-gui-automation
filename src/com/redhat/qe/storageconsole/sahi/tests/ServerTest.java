@@ -83,7 +83,7 @@ public class ServerTest extends SahiTestBase{
     public void renameServerInUpState() throws FileNotFoundException, IOException, JAXBException, TestEnvironmentConfigException {
         ServerMap server = (ServerMap) getServerCreationgData()[0][0];
         String newServerName = server.getServerName() + System.currentTimeMillis();
-        Assert.assertTrue(tasks.renameServerInUpState(server), "Server[" + server.getServerHostIP() + "] rename server in up state!");
+        Assert.assertTrue(tasks.renameServerInUpState(server, newServerName), "Server[" + server.getServerHostIP() + "] rename server in up state!");
         Assert.assertTrue(storageSahiMessageTasks.validateLogMessage(EVENT_MSG_SERVER_EDITED_RENAMED.replace(".*.", newServerName) + server.getServerName() + "."));
         Assert.assertTrue(storageSahiMessageTasks.validateLogMessage(EVENT_MSG_SERVER_EDITED_PARAMETERS_UPDATED_BY.replace(".*.", server.getServerName())));
     }

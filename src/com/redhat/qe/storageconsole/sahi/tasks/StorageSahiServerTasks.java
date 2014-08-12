@@ -296,8 +296,7 @@ public class StorageSahiServerTasks {
 		return true;
 	}
 	
-    public boolean renameServerInUpState(ServerMap server) {
-        String expectedServerName = server.getServerName() + System.currentTimeMillis();
+    public boolean renameServerInUpState(ServerMap server, String newServerName) {
         boolean foundServer = false;
 
         if(!storageSahiTasks.selectPage(server.getResourceLocation())) {
@@ -311,15 +310,15 @@ public class StorageSahiServerTasks {
                 return false;
         }
        
-        editServer(server, expectedServerName, null);
+        editServer(server, newServerName, null);
 
         LinkedList<HashMap<String, String>> serversTable = GuiTables.getServersTable(storageSahiTasks);
 
         for(HashMap<String, String> row : serversTable) {
                 // Find the desired row by server's IP
                 if(row.get(GuiTables.HOST_IP).equals(server.getServerHostIP())) {
-                        if (!row.get(GuiTables.NAME).equals(expectedServerName)) {
-                                storageSahiTasks._logger.log(Level.WARNING, "Server[" + row.get(GuiTables.NAME) + "] does not contain expected new server name [" + expectedServerName + "]!");
+                        if (!row.get(GuiTables.NAME).equals(newServerName)) {
+                                storageSahiTasks._logger.log(Level.WARNING, "Server[" + row.get(GuiTables.NAME) + "] does not contain expected new server name [" + newServerName + "]!");
                                 editServer(server, server.getServerName(), null);
                                 return false;
                         }
