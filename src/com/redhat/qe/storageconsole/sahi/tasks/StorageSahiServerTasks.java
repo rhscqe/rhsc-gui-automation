@@ -409,6 +409,10 @@ public class StorageSahiServerTasks {
 			return false;
 		}
 		
+		for (int i = 0; i < 3; i++) {
+			storageSahiTasks.clickRefresh("Host");
+		}
+
         String serverStatus = GuiTables.getServer(storageSahiTasks, server.getServerName()).get(GuiTables.STATUS);
         if(!serverStatus.equalsIgnoreCase(GuiTables.Status.MAINTENANCE.get())){
             storageSahiTasks._logger.log(Level.WARNING, "Server ["+server.getServerName()+"] not in " + GuiTables.Status.MAINTENANCE.get() + "!");

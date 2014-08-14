@@ -54,7 +54,7 @@ public class ServerTest extends SahiTestBase{
 	
 	@Test(dataProvider="serverCreationData")
 	public void removeServer(ServerMap serverMap){
-		Assert.assertTrue(tasks.removeServer(serverMap), "Server["+serverMap.getServerHostIP()+"] Addition status");
+		Assert.assertTrue(tasks.removeServer(serverMap), "Server["+serverMap.getServerHostIP()+"] removal status");
 		Assert.assertTrue(storageSahiMessageTasks.validateLogMessage(EVENT_MSG_SERVER_MOVED_TO_MAINTENANCE.replace(".*.", serverMap.getServerName())));
 		Assert.assertTrue(storageSahiMessageTasks.validateLogMessage(EVENT_MSG_SERVER_REMOVED.replace(".*.", serverMap.getServerName())));
 	}
@@ -81,7 +81,7 @@ public class ServerTest extends SahiTestBase{
 	
     @Test
     public void renameServerInUpState() throws FileNotFoundException, IOException, JAXBException, TestEnvironmentConfigException {
-        ServerMap server = (ServerMap) getServerCreationgData()[0][0];
+        ServerMap server = (ServerMap) getServerCreationData()[0][0];
         String newServerName = server.getServerName() + System.currentTimeMillis();
         Assert.assertTrue(tasks.renameServerInUpState(server, newServerName), "Server[" + server.getServerHostIP() + "] rename server in up state!");
         Assert.assertTrue(storageSahiMessageTasks.validateLogMessage(EVENT_MSG_SERVER_EDITED_RENAMED.replace(".*.", newServerName) + server.getServerName() + "."));
@@ -90,7 +90,7 @@ public class ServerTest extends SahiTestBase{
 
     @Test
     public void editServerInMaintenance() throws FileNotFoundException, IOException, JAXBException, TestEnvironmentConfigException {
-        ServerMap server = (ServerMap) getServerCreationgData()[0][0];
+        ServerMap server = (ServerMap) getServerCreationData()[0][0];
         String newServerName = server.getServerName() + System.currentTimeMillis();
         Assert.assertTrue(tasks.editServerInMaintenanceState(server), "Server[" + server.getServerHostIP() + "] edit server in maintenance state!");
 		Assert.assertTrue(storageSahiMessageTasks.validateLogMessage(EVENT_MSG_SERVER_RENAMED.replace(".*.", server.getServerName())));
@@ -100,12 +100,12 @@ public class ServerTest extends SahiTestBase{
 
     @Test
     public void editServerInMaintenanceThatHasVolumes() throws FileNotFoundException, IOException, JAXBException, TestEnvironmentConfigException {
-        ServerMap server = (ServerMap) getServerCreationgData()[0][0];
+        ServerMap server = (ServerMap) getServerCreationData()[0][0];
         Assert.assertTrue(tasks.editServerInMaintenanceStateThatHasVolumes(server), "Server[" + server.getServerHostIP() + "] edit server in maintenance state!");
     }
     
 	@DataProvider(name="serverCreationData")
-	public Object[][] getServerCreationgData() throws FileNotFoundException, IOException, JAXBException, TestEnvironmentConfigException{
+	public Object[][] getServerCreationData() throws FileNotFoundException, IOException, JAXBException, TestEnvironmentConfigException{
 		ArrayList<Object> data = new ArrayList<Object>();
 		
 		for(Server server : TestEnvironmentConfig.getTestEnvironemt().getServers()){

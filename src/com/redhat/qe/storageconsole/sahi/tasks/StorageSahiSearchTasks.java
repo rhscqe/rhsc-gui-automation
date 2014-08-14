@@ -129,7 +129,9 @@ public class StorageSahiSearchTasks {
 	
 	public void searchByHostAttribute(String searchAttribute, String columnName) {
 		Assert.assertTrue(storageSahiTasks.selectPage("Hosts"));
-        storageSahiTasks.clickRefresh("Host");
+		for (int i = 0; i < 3; i++) {
+			storageSahiTasks.clickRefresh("Host");
+		}
 
 		// Get list of servers
 		LinkedList<HashMap<String, String>> serversTable =  GuiTables.getServersTable(storageSahiTasks);
