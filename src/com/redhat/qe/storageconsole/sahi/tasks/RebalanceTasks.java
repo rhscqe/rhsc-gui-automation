@@ -11,6 +11,7 @@ import com.redhat.qe.model.WaitUtil;
 import com.redhat.qe.model.WaitUtil.WaitResult;
 import com.redhat.qe.storageconsole.helpers.elements.Cell;
 import com.redhat.qe.storageconsole.helpers.elements.ContextMenu;
+import com.redhat.qe.storageconsole.helpers.elements.Dialog;
 import com.redhat.qe.storageconsole.helpers.elements.MainTabRefreshButton;
 import com.redhat.qe.storageconsole.helpers.elements.Row;
 import com.redhat.qe.storageconsole.helpers.elements.VolumeTable;
@@ -98,6 +99,8 @@ public class RebalanceTasks {
 		return new VolumeTable(getBrowser());
 	}
 
-
+	public Dialog getDialog() {
+		return new Dialog("Operation Canceled",getBrowser());
+	}
 	
 }
