@@ -575,8 +575,8 @@
     </test>
     
 	
-	    <test name="Edit Server When In Maintenance">
-        <classes>
+	 <test name="Edit Server When In Maintenance">
+         <classes>
             <class name="com.redhat.qe.storageconsole.sahi.tests.ServerTest">
                 <methods>
                     <include name="editServerInMaintenance"></include>
