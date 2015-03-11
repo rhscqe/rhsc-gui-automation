@@ -321,7 +321,6 @@ public class VolumeTest extends SahiTestBase {
 		volumeMap.setVolumeEditOptionValue("off");
 		authAllowTestValue = TestEnvironmentConfig.getTestEnvironemt().getGeneralKeyValueMapFromKey("ALLOW_ALL").getValue();
 		volumeMap.setVolumeAuthAllowValue(authAllowTestValue);
-		volumeMap.setVolumeIsTechPreview(true);
 		data.add(volumeMap);
 		volumeMap = new VolumeMap();
 		
@@ -338,7 +337,6 @@ public class VolumeTest extends SahiTestBase {
 		volumeMap.setVolumeEditOptionValue("on");
 		authAllowTestValue = TestEnvironmentConfig.getTestEnvironemt().getGeneralKeyValueMapFromKey("COMMA_SEPARATED_HOSTNAMES").getValue();
 		volumeMap.setVolumeAuthAllowValue(authAllowTestValue);
-		volumeMap.setVolumeIsTechPreview(true);
 		data.add(volumeMap);
 		volumeMap = new VolumeMap();
 		
